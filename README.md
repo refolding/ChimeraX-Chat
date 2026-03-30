@@ -1,6 +1,6 @@
 1. Build
    
-Download or clone the this git project, then use ChimeraX command console to build:
+Download or clone this git project, then use ChimeraX command console to build:
 
 devel build /path/to/chimerax-chat
 
