@@ -1,0 +1,9 @@
+README.md
+ChimeraX_Chat.egg-info/PKG-INFO
+ChimeraX_Chat.egg-info/SOURCES.txt
+ChimeraX_Chat.egg-info/dependency_links.txt
+ChimeraX_Chat.egg-info/requires.txt
+ChimeraX_Chat.egg-info/top_level.txt
+src/__init__.py
+src/api.py
+src/tool.py

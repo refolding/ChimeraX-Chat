@@ -1,0 +1,29 @@
+ca<BundleInfo name="ChimeraX-Chat"
+            version="0.1.0"
+            package="chimerax.chat"
+            minSessionVersion="1" maxSessionVersion="1">
+
+  <Author>Bing-Rui Zhou</Author>
+  <Email>bing-rui.zhou AT nih.gov</Email>
+  <URL>https://github.com/refolding/chimerax-chat</URL>
+  <Synopsis>Chat with your ChimeraX structures.</Synopsis>
+  <Description>AI interactive interface to chat with your structures using natural language and the Gemini API.</Description>
+
+  <!-- REQUIRED: Defines the folder in the ChimeraX menu -->
+  <Categories>
+    <Category name="AI Assistants" description="Tools powered by AI"/>
+  </Categories>
+
+  <!-- REQUIRED: Registers the actual tool (replaces the old Tools block) -->
+  <Classifiers>
+    <PythonClassifier>Development Status :: 3 - Alpha</PythonClassifier>
+    <PythonClassifier>Programming Language :: Python :: 3</PythonClassifier>
+    <ChimeraXClassifier>ChimeraX :: Tool :: AI Chat :: AI Assistants :: Chat with your structure using AI</ChimeraXClassifier>
+  </Classifiers>
+
+  <Dependencies>
+    <Dependency name="ChimeraX-Core"/>
+    <Dependency name="ChimeraX-UI"/>
+  </Dependencies>
+
+</BundleInfo>
