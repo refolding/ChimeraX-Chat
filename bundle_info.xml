@@ -6,7 +6,7 @@ ca<BundleInfo name="ChimeraX-Chat"
   <Author>Bing-Rui Zhou</Author>
   <Email>bing-rui.zhou AT nih.gov</Email>
   <URL>https://github.com/refolding/chimerax-chat</URL>
-  <Synopsis>Chat with your ChimeraX structures.</Synopsis>
+  <Synopsis>Chat with your structures in ChimeraX</Synopsis>
   <Description>AI interactive interface to chat with your structures using natural language and the Gemini API.</Description>
 
   <!-- REQUIRED: Defines the folder in the ChimeraX menu -->
