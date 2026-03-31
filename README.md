@@ -12,8 +12,8 @@ toolshed install /path/to/chimerax-chat/dist/ChimeraX_Chat-0.1.0-py3-none-any.wh
 
 3. Use
    
-Lauch the Chat box from "Tool" manu, or run command:
+Lanuch the Chat box from "Tool" menu, or run command:
 
 ui tool show "AI Chat"
 
-First time your run the chat box, it will prompt you to enter your api key. You can get a free Google AI Studio api key from https://aistudio.google.com/app/api-keys
+First time you run the chat box, it will prompt you to enter your api key. You can get a free Google AI Studio api key from https://aistudio.google.com/app/api-keys
