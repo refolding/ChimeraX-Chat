@@ -1,4 +1,4 @@
-ca<BundleInfo name="ChimeraX-Chat"
+<BundleInfo name="ChimeraX-Chat"
             version="0.1.0"
             package="chimerax.chat"
             minSessionVersion="1" maxSessionVersion="1">

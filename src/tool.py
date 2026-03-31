@@ -1,6 +1,7 @@
 import threading
 import queue
 import os
+import html
 from chimerax.core.tools import ToolInstance
 from chimerax.core.commands import run
 
@@ -75,6 +76,11 @@ class AIChatTool(ToolInstance):
         """Saves the API key locally so they aren't prompted again."""
         with open(KEY_FILE, "w") as f:
             f.write(key.strip())
+        try:
+            os.chmod(KEY_FILE, 0o600)
+        except OSError:
+            # Best-effort permission hardening on platforms that support it
+            pass
         self.api_key = key.strip()
 
     def prompt_for_key(self):
@@ -99,7 +105,8 @@ class AIChatTool(ToolInstance):
             if not self.api_key: # If they canceled the prompt again
                 return
                 
-        self.history.append(f"<br><b style='color:#0078D7;'>You:</b> {user_text}")
+        safe_user_text = html.escape(user_text)
+        self.history.append(f"<br><b style='color:#0078D7;'>You:</b> {safe_user_text}")
         self.input_field.clear()
         
         self.history.append("<i><small style='color:gray;'>Thinking...</small></i>")
@@ -108,12 +115,10 @@ class AIChatTool(ToolInstance):
         current_key = self.api_key 
         
         def fetch_task():
-            print(f"[AI Chat] Sending to API: {user_text}") 
             cmd = get_chimerax_command(user_text, current_key) # Pass the key here!
-            print(f"[AI Chat] Received from API: {cmd}") 
             self.response_queue.put(cmd)
             
-        threading.Thread(target=fetch_task).start()
+        threading.Thread(target=fetch_task, daemon=True).start()
 
     def check_for_responses(self):
         try:
@@ -124,11 +129,14 @@ class AIChatTool(ToolInstance):
 
     def _apply_command(self, cmd):
         if cmd.startswith("error:"):
-            self.history.append(f"<i style='color:red;'>AI Error: {cmd}</i>")
+            safe_error = html.escape(cmd)
+            self.history.append(f"<i style='color:red;'>AI Error: {safe_error}</i>")
             return
             
-        self.history.append(f"<b style='color:#107C10;'>AI executing:</b> <code>{cmd}</code>")
+        safe_cmd = html.escape(cmd)
+        self.history.append(f"<b style='color:#107C10;'>AI executing:</b> <code>{safe_cmd}</code>")
         try:
             run(self.session, cmd)
         except Exception as e:
-            self.history.append(f"<i style='color:red;'>ChimeraX Error: {str(e)}</i>")
+            safe_exec_error = html.escape(str(e))
+            self.history.append(f"<i style='color:red;'>ChimeraX Error: {safe_exec_error}</i>")
